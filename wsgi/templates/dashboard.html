@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/cp_style.css" type="text/css">
+  </head>
+
+<link rel="shortcut icon" href="/static/Charger57x57.png" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/static/Charger57x57.png"/>
+<link rel="apple-touch-icon" sizes="144x144" href="/static/Charger144x144.png"/>
+<link rel="apple-touch-icon" sizes="152x152" href="/static/Charger152x152.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/static/Charger180x180.png"/>
+
+  <body>
+    <h1>{{ title }}</h1>
+    {% for garage in garages %}
+    <div class="column">
+        <h2>{{ garage.name }}</h2>
+        <div class=box-{% if garage.available == 1 and garage.total > 2 %}yellow
+		{% elif garage.available > 0 %}green
+		{% else %}red{% endif %}>
+         {{ garage.available }} / {{ garage.total }}
+      </div>
+    </div>
+    {% endfor %}
+    <button class="button-refresh"; onclick="refreshFunction()">Refresh</button>
+    <script>
+	function refreshFunction() {
+	    location.reload(true)
+	}
+    </script>
+
+
+    <div class="big-box">
+    <h2>&nbsp;</h2>
+    </div>
+    <div class="column">
+      <p class="timestamp">Updated: {{ last_update }}</p>
+    </div>
+
+
+  </body>
+</html>
